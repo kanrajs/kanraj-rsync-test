@@ -1,0 +1,14 @@
+---
+- hosts: clients
+  vars:
+    dst: /tmp/test/ 
+  tasks:
+    - name: Transfer file from sivkclient1 to sivkclient2
+      synchronize: 
+        src: "{{ dst }}" 
+        #src: /tmp/test.txt 
+        dest: "{{ dst }}{{ ansible_hostname }}"
+        mode: pull
+        #recursive: yes
+      delegate_to: sivkclient2
+
